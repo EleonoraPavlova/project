@@ -45,3 +45,10 @@ body {
 li {
     list-style: none;
 }
+
+.dt {
+  font-weight: 700;
+}
+.success {
+    color: green;
+}
