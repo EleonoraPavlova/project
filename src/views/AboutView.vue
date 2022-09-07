@@ -7,22 +7,37 @@
 			}"
 			>{{ titleAbout }}</H1Component
 		>
+		{{ activeChapter }}
 		<div class="form-control">
-			<DescriptionVue
-				>Vue is a framework and ecosystem that covers most of the common
-				features needed in frontend development. But the web is extremely
-				diverse - the things we build on the web may vary drastically in form
-				and scale. With that in mind, Vue is designed to be flexible and
-				incrementally adoptable.</DescriptionVue
-			>
+			<DescriptionVue :class="{ active: activeChapter === index }">{{
+				arrayDescriprtion[activeChapter]
+			}}</DescriptionVue>
 			<div class="d-flex justify-content-between p-4">
-				<StepByStep v-for="num in 5" :key="num" color="grey">{{
-					num
-				}}</StepByStep>
+				<StepPagination
+					v-for="(step, index) in arraySteps"
+					:key="index"
+					:color="activeChapter >= index ? 'green' : 'grey'"
+					:title="step"
+					@click="changePage(index)"
+					>{{ index + 1 }}</StepPagination
+				>
 			</div>
+
 			<div class="p-4 d-flex justify-content-start">
-				<MyButtons size="btn-sm" color="btn-outline-success">Back</MyButtons>
-				<MyButtons size="btn-sm" color="btn-outline-success">Forward</MyButtons>
+				<MyButtons
+					size="btn-sm"
+					color="btn-outline-success"
+					:class="{ disabled: activeChapter === 0 }"
+					@click="activeChapter--"
+					>Back</MyButtons
+				>
+				<MyButtons
+					size="btn-sm"
+					color="btn-outline-success"
+					:class="{ disabled: activeChapter === arrayDescriprtion.length - 1 }"
+					@click="activeChapter++"
+					>Forward</MyButtons
+				>
 			</div>
 		</div>
 	</div>
@@ -31,20 +46,49 @@
 <script>
 import H1Component from "../components/H1Component.vue";
 import DescriptionVue from "../components/DescriptionVue.vue";
-import StepByStep from "../components/StepByStep.vue";
+import StepPagination from "../components/StepPagination.vue";
 import MyButtons from "../components/MyButtons.vue";
 
 export default {
 	components: {
 		H1Component,
 		DescriptionVue,
-		StepByStep,
+		StepPagination,
 		MyButtons,
 	},
 	data() {
 		return {
+			arraySteps: ["Basics", "Components", "Router", "Vuex", "Composition"],
 			titleAbout: "Vue 3 study plan",
+			arrayDescriprtion: [
+				`Vue is a framework and ecosystem that covers most of the common
+				features needed in frontend development. But the web is extremely
+				diverse - the things we build on the web may vary drastically in form
+				and scale. With that in mind, Vue is designed to be flexible and
+				incrementally adoptable.`,
+				`Vue components are written as a combination of JavaScript objects that 
+        manage the app's data and an HTML-based template syntax that maps to the 
+        underlying DOM structure.`,
+				`Vue Router helps link between the browser's URL/History and Vue's 
+        components allowing for certain paths to render whatever view is associated with it.`,
+				`Vuex is a state management pattern + library for Vue.js applications. It serves as a 
+        centralized store for all the components in an application, with rules ensuring that 
+        the state can only be mutated in a predictable fashion.`,
+				`Composition API is a set of APIs that allows us to author Vue 
+        components using imported functions instead of declaring options.
+         It is an umbrella term that covers the following APIs: Reactivity API,
+          e.g. ref() and reactive() , that allows us to directly create reactive
+           state, computed state, and watchers.`,
+			],
+			page: 1,
+			totalPages: 0,
+			activeChapter: 0,
 		};
+	},
+	methods: {
+		changePage(pageNumber) {
+			this.activeChapter = pageNumber; //меняем значение страницы на номер кликнутой страницы
+		},
 	},
 };
 </script>

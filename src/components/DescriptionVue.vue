@@ -1,12 +1,15 @@
 <template>
-	<div class="p-4">
-		<h5><slot /></h5>
+	<div class="p-3">
+		<h5 class="m-0"><slot /></h5>
 	</div>
 </template>
 
 <script>
 export default {
 	name: "DescriptionVue",
+	data() {
+		return {};
+	},
 };
 </script>
 

@@ -1,4 +1,4 @@
-.<template>
+<template>
 	<button
 		type="button"
 		class="btn m-1"
