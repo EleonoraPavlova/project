@@ -24,20 +24,37 @@
 			</div>
 
 			<div class="p-4 d-flex justify-content-start">
-				<MyButtons
-					size="btn-sm"
-					color="btn-outline-success"
-					:class="{ disabled: activeChapter === 0 }"
-					@click="activeChapter--"
-					>Back</MyButtons
-				>
-				<MyButtons
-					size="btn-sm"
-					color="btn-outline-success"
-					:class="{ disabled: activeChapter === arrayDescriprtion.length - 1 }"
-					@click="activeChapter++"
-					>Forward</MyButtons
-				>
+				<div v-if="!switchForButton">
+					<MyButtons
+						size="btn-sm"
+						color="btn-outline-success"
+						:class="{ disabled: activeChapter === 0 }"
+						@click="activeChapter--"
+						>Back</MyButtons
+					>
+					<MyButtons
+						v-if="activeChapter != arrayDescriprtion.length - 1"
+						size="btn-sm"
+						color="btn-outline-success"
+						@click="activeChapter++"
+						>Forward</MyButtons
+					>
+					<MyButtons
+						v-if="activeChapter === arrayDescriprtion.length - 1"
+						size="btn-sm"
+						color="btn-outline-warning"
+						@click="switchButton()"
+						>Finish</MyButtons
+					>
+				</div>
+				<div v-show="switchForButton">
+					<MyButtons
+						size="btn-lg"
+						color="btn-outline-success"
+						@click="startOver()"
+						>Start over</MyButtons
+					>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -80,14 +97,21 @@ export default {
           e.g. ref() and reactive() , that allows us to directly create reactive
            state, computed state, and watchers.`,
 			],
-			page: 1,
-			totalPages: 0,
 			activeChapter: 0,
+			switchForButton: false,
+			startOverClick: false,
 		};
 	},
 	methods: {
 		changePage(pageNumber) {
 			this.activeChapter = pageNumber; //меняем значение страницы на номер кликнутой страницы
+		},
+		switchButton() {
+			this.switchForButton = true;
+		},
+		startOver() {
+			this.switchForButton = false;
+			this.activeChapter = 0;
 		},
 	},
 };
