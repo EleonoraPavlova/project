@@ -2,7 +2,7 @@
 	<button
 		type="button"
 		class="btn m-1"
-		:class="[color, size]"
+		:class="[`btn-${color}`, `btn-${size}`]"
 		@click="$emit('click')"
 	>
 		<slot />
@@ -15,11 +15,11 @@ export default {
 	props: {
 		color: {
 			type: String,
-			default: "btn-outline-primary",
+			default: "primary",
 		},
 		size: {
 			type: String,
-			default: "btn-lg",
+			default: "lg",
 		},
 	},
 	emits: ["click"],

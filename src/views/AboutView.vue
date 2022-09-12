@@ -16,7 +16,7 @@
 				<StepPagination
 					v-for="(step, index) in arraySteps"
 					:key="index"
-					:color="activeChapter >= index ? 'green' : 'grey'"
+					:color="activeChapter >= index ? 'sucsses' : 'grey'"
 					:title="step"
 					@click="changePage(index)"
 					>{{ index + 1 }}</StepPagination
@@ -26,31 +26,35 @@
 			<div class="p-4 d-flex justify-content-start">
 				<div v-if="!switchForButton">
 					<MyButtons
-						size="btn-sm"
-						color="btn-outline-success"
+						size="sm"
+						color="light"
+						class="btn-outline-success"
 						:class="{ disabled: activeChapter === 0 }"
 						@click="activeChapter--"
 						>Back</MyButtons
 					>
 					<MyButtons
 						v-if="activeChapter != arrayDescriprtion.length - 1"
-						size="btn-sm"
-						color="btn-outline-success"
+						size="sm"
+						color="light"
+						class="btn-outline-success"
 						@click="activeChapter++"
 						>Forward</MyButtons
 					>
 					<MyButtons
 						v-if="activeChapter === arrayDescriprtion.length - 1"
-						size="btn-sm"
-						color="btn-outline-warning"
+						size="sm"
+						color="light"
+						class="btn-outline-warning"
 						@click="switchButton()"
 						>Finish</MyButtons
 					>
 				</div>
 				<div v-show="switchForButton">
 					<MyButtons
-						size="btn-lg"
-						color="btn-outline-success"
+						size="lg"
+						color="light"
+						class="btn-outline-success"
 						@click="startOver()"
 						>Start over</MyButtons
 					>
