@@ -33,7 +33,7 @@ a {
 }
 
 p {
-  word-break: normal;
+  word-wrap: break-word;
 }
 
 img {

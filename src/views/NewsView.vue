@@ -1,28 +1,36 @@
 <template>
 	<div class="container">
 		<H1Component>Actual news</H1Component>
-		<NewsBox v-for="item in articles" :key="item" :article="item">{{
-			item
-		}}</NewsBox>
-
-		<div class="d-flex justify-content-end align-items-center mt-5 p-2">
-			<PaginationPages v-if="startPage != 1" @click="setPage(1)"
-				>First</PaginationPages
-			>
-			<PaginationPages v-if="startPage > 1" @click="setPage(startPage - 1)"
-				>Back</PaginationPages
-			>
-			<LabelPages>{{ startPage }} of {{ totalPages }}</LabelPages>
-			<PaginationPages
-				v-if="startPage != totalPages"
-				@click="setPage(startPage + 1)"
-				>Next</PaginationPages
-			>
-			<PaginationPages
-				v-if="startPage != totalPages"
-				@click="setPage(totalPages)"
-				>Last</PaginationPages
-			>
+		{{ mark }}
+		<NewsBox
+			v-for="item in articles"
+			:key="item"
+			:article="item"
+			:is-read="mark.includes(item._id)"
+			@reads="markRead(item._id)"
+			>{{ item }}</NewsBox
+		>
+		<div class="d-flex justify-content-between align-items-center mt-5 p-2">
+			<div><strong>Total read:</strong> {{ mark.length }} news</div>
+			<div class="d-flex">
+				<PaginationPages v-if="startPage != 1" @click="setPage(1)"
+					>First</PaginationPages
+				>
+				<PaginationPages v-if="startPage > 1" @click="setPage(startPage - 1)"
+					>Back</PaginationPages
+				>
+				<LabelPages>{{ startPage }} of {{ totalPages }}</LabelPages>
+				<PaginationPages
+					v-if="startPage != totalPages"
+					@click="setPage(startPage + 1)"
+					>Next</PaginationPages
+				>
+				<PaginationPages
+					v-if="startPage != totalPages"
+					@click="setPage(totalPages)"
+					>Last</PaginationPages
+				>
+			</div>
 		</div>
 	</div>
 </template>
@@ -48,9 +56,9 @@ export default {
 			startPage: 1,
 			limit: 10,
 			totalPages: 0,
+			mark: [],
 		};
 	},
-
 	async created() {
 		await this.fetchNews();
 	},
@@ -96,6 +104,16 @@ export default {
 			// автомат подрузка данных API при клике на кнопки
 			this.startPage = page;
 			this.fetchNews();
+		},
+		markRead(id) {
+			// /*eslint-disable*/
+			// debugger;
+			if (!this.mark.includes(id)) {
+				this.mark.push(id);
+			} else {
+				const index = this.mark.findIndex((item) => item === id);
+				this.mark.splice(index, 1);
+			}
 		},
 	},
 };
