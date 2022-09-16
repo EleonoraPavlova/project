@@ -4,21 +4,24 @@
 		<div class="d-flex justify-content-center">
 			<MyButtons
 				v-if="!isEditing"
-				color="btn-outline-success"
-				size="btn-sm"
+				color="light"
+				class="btn-outline-success"
+				size="sm"
 				@click="$emit('edit')"
 				>Edit</MyButtons
 			>
 			<MyButtons
 				v-else
-				color="btn-outline-success"
-				size="btn-sm"
+				color="light"
+				class="btn-outline-success"
+				size="sm"
 				@click="$emit('saved')"
 				>Save</MyButtons
 			>
 			<MyButtons
-				color="btn-outline-danger"
-				size="btn-sm"
+				color="light"
+				class="btn-outline-danger"
+				size="sm"
 				@click="$emit('click')"
 				>Delete</MyButtons
 			>

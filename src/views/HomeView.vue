@@ -15,7 +15,11 @@
 					size="form-control-sm"
 					@keyup.enter="addNote()"
 				/>
-				<MyButtons color="btn-outline-success" size="btn-sm" @click="addNote()"
+				<MyButtons
+					class="btn-outline-success"
+					color="light"
+					size="sm"
+					@click="addNote()"
 					>Add</MyButtons
 				>
 			</div>
