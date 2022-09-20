@@ -8,14 +8,13 @@ import "./assets/normalize.css";
 import ToastPlugin from "vue-toast-notification";
 import "vue-toast-notification/dist/theme-sugar.css";
 import VFocus from "./directives/VFocus";
+
 const app = createApp(App);
 app.directive("focus", {
     mounted(el) {
         el.focus();
     },
 });
-
-
 
 
 

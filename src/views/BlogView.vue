@@ -23,6 +23,7 @@
 			</template>
 		</BlogPlan>
 		<DynamicComponents />
+		<AsyncComponent />
 
 		<!-- передаем значения слота как пропс -->
 	</div>
@@ -32,6 +33,7 @@
 import CardBlog from "../components/CardBlog.vue";
 import BlogPlan from "../components/BlogPlan.vue";
 import DynamicComponents from "../components/DynamicComponents.vue";
+import { defineAsyncComponent } from "vue";
 
 export default {
 	name: "BlogView",
@@ -39,6 +41,9 @@ export default {
 		CardBlog,
 		BlogPlan,
 		DynamicComponents,
+		AsyncComponent: defineAsyncComponent(() =>
+			import("../components/AsyncComponent.vue")
+		),
 	},
 };
 </script>

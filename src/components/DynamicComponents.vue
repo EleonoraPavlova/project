@@ -4,14 +4,14 @@
 		<hr class="mx-3" />
 		<div class="mb-4">
 			<MyButtons
-				:color="active === 'first' ? 'green' : ''"
-				class="btn-outline-warning focus:outline-none"
+				:color="firstColor"
+				class="btn-outline-warning"
 				size="sm"
 				@click="active = 'first'"
 				>First tab</MyButtons
 			>
 			<MyButtons
-				:color="active === 'second' ? 'green' : ''"
+				:color="secondColor"
 				class="btn-outline-warning"
 				size="sm"
 				@click="active = 'second'"
@@ -19,9 +19,14 @@
 			>
 		</div>
 		<div class="d-flex justify-content-around">
+			<!-- <component :is="toggleActive" /> -->
+			<!-- <component :is="toggleActive" /> сокращенная запись от CardOne/CardTwo -->
+
 			<div v-if="active === 'first'">
+				<!-- <!- переключаем контент по кнопкам -->
 				<CardOne />
 			</div>
+
 			<div v-if="active === 'second'">
 				<CardTwo
 					:icon-color="iconColor"
@@ -57,8 +62,26 @@ export default {
 			iconColor: "green",
 			iconSize: "",
 			iconImage: "",
-			active: "first",
+			active: "first", // or second
 		};
+	},
+	computed: {
+		// вычисляет значение свойства, которое может зависеть от других свойств,
+		//но делает это лишь тогда, когда какое-то из них изменилось
+		// toggleActive() {
+		// 	if (this.active === "first") {
+		// 		return "CardOne";
+		// 	} else {
+		// 		return "CardTwo";
+		// 	}
+		// or return "Card" + this.active;
+		// },
+		firstColor() {
+			return this.active === "first" ? "green" : "";
+		},
+		secondColor() {
+			return this.active === "second" ? "green" : "";
+		},
 	},
 	methods: {
 		changeColor() {
