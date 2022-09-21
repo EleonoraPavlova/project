@@ -1,5 +1,5 @@
 <template>
-	<div v-if="show" class="position-fixed modal d-flex p-3">
+	<div v-if="show" class="position-fixed modal d-flex p-3" @click="hideModal">
 		<div
 			class="
 				m-auto
@@ -11,6 +11,7 @@
 				d-flex
 				flex-column
 			"
+			@click.stop
 		>
 			<slot />
 		</div>
@@ -20,11 +21,17 @@
 <script>
 export default {
 	name: "ModalWindow",
-	components: {},
+
 	props: {
 		show: {
 			type: Boolean,
 			default: false,
+		},
+	},
+	emits: ["show"],
+	methods: {
+		hideModal() {
+			this.$emit("show", false);
 		},
 	},
 };

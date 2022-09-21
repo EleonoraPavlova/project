@@ -1,22 +1,38 @@
 <template>
 	<div class="div">
-		<input :id="checkboxId" type="checkbox" class="me-3" />
+		<input
+			:id="id"
+			type="checkbox"
+			:value="id"
+			class="me-3"
+			@chooseAll="chooseAllSkills"
+		/>
 		<label
-			:for="checkboxId"
+			:for="id"
 			class="flex flex-row items-center font-bold cursor-pointer"
 		>
-			<slot />
+			{{ skills.label }}
 		</label>
 	</div>
 </template>
 
 <script>
 export default {
-	name: "RadioButtons",
+	name: "CheckBox",
 	props: {
-		checkboxId: {
+		skills: {
+			type: Object,
+			default: () => ({}),
+		},
+		id: {
 			type: String,
 			required: true,
+		},
+	},
+	emits: ["chose"],
+	methods: {
+		chooseAllSkills() {
+			this.$emit("chose");
 		},
 	},
 };

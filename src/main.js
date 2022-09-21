@@ -7,7 +7,7 @@ import "./assets/base.css";
 import "./assets/normalize.css";
 import ToastPlugin from "vue-toast-notification";
 import "vue-toast-notification/dist/theme-sugar.css";
-import VFocus from "./directives/VFocus";
+
 
 const app = createApp(App);
 app.directive("focus", {
@@ -18,4 +18,4 @@ app.directive("focus", {
 
 
 
-createApp(App).use(store).use(router).use(ToastPlugin).use(VFocus).mount("#app");
+createApp(App).use(store).use(router).use(ToastPlugin).mount("#app");
