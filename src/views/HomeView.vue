@@ -10,7 +10,7 @@
 			>
 			<div class="form-control">
 				<MyInput
-					v-model="inputValue"
+					v-model.trim="inputValue"
 					:placeholder="placeholder"
 					size="form-control-sm"
 					@keyup.enter="addNote()"

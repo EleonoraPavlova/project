@@ -2,16 +2,17 @@
 	<div class="div">
 		<input
 			:id="id"
+			:checked="modelValue"
 			type="checkbox"
-			:value="id"
 			class="me-3"
-			@chooseAll="chooseAllSkills"
+			name="checkboxName"
+			@change="updateCheckbox"
 		/>
 		<label
 			:for="id"
 			class="flex flex-row items-center font-bold cursor-pointer"
 		>
-			{{ skills.label }}
+			{{ label }}
 		</label>
 	</div>
 </template>
@@ -20,19 +21,23 @@
 export default {
 	name: "CheckBox",
 	props: {
-		skills: {
-			type: Object,
-			default: () => ({}),
+		label: {
+			type: String,
+			default: "",
 		},
 		id: {
-			type: String,
+			type: Number,
 			required: true,
 		},
+		modelValue: {
+			type: Boolean,
+			default: false,
+		},
 	},
-	emits: ["chose"],
+	emits: ["update:modelValue"],
 	methods: {
-		chooseAllSkills() {
-			this.$emit("chose");
+		updateCheckbox() {
+			this.$emit("update:modelValue", !this.modelValue);
 		},
 	},
 };

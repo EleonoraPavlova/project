@@ -14,10 +14,15 @@
 			</div>
 			<DescriptionVue><strong>Fill out the form</strong> </DescriptionVue>
 			<MyInput
-				v-model="inputValue"
+				v-model.trim="inputValue"
 				:placeholder="`What's your name?`"
 				size="form-control-sm"
 			/>
+			<div v-if="isValidation">
+				<p class="dangerous text-center lh-1 fw-lighter font-small">
+					Enter your name please
+				</p>
+			</div>
 
 			<SelectInput v-model="modelValueAge" class="m-2"
 				><option disabled value="">Сhoose your age</option>
@@ -41,14 +46,30 @@
 				<RadioButtons />
 			</div>
 			<div class="d-flex flex-column align-items-start m-2">
-				<DescriptionVue class="mb-1">Specify your skill:</DescriptionVue>
+				<DescriptionVue>Specify your skill:</DescriptionVue>
 				<CheckBox
 					v-for="skill in arrSkills"
-					id="id"
-					:key="skill"
-					:skills="skill"
-					@chose="chooseAllSkills()"
+					:id="skill.id"
+					:key="skill.id"
+					v-model="skill.selected"
+					:label="skill.label"
 				/>
+				<div>
+					<!-- :key="skill.id" key не может быть объектом, только чистом или строкой или буль -->
+					<input
+						id="chooseAll"
+						:checked="checked"
+						type="checkbox"
+						class="me-3"
+						@input="chooseAllSkills"
+					/>
+					<label
+						for="chooseAll"
+						class="flex flex-row items-center font-bold cursor-pointer"
+					>
+						Choose all</label
+					>
+				</div>
 			</div>
 			<MyButtons
 				class="btn-outline-success"
@@ -98,13 +119,12 @@ export default {
 			default: null,
 		},
 	},
-	emits: ["update: show"],
+	emits: ["update:show"],
 	data() {
 		return {
 			inputValue: "",
 			modelValueCity: "",
 			modelValueAge: "",
-			checkedSkills: false,
 			//выбрать возраст из предложеного списка
 			options: Array(33)
 				.fill(1)
@@ -126,21 +146,27 @@ export default {
 			],
 			isVisibleModal: false,
 			arrSkills: [
-				{ id: 1, label: "Stylus, Sass, Less" },
-				{ id: 2, label: "Gulp, Webpack, Grunt" },
-				{ id: 3, label: "Working with API" },
-				{ id: 4, label: "SQL/MySQL/PostreSQL/NoSQL" },
-				{ id: 5, label: "Node Js" },
-				{ id: 6, label: "Docker" },
-				{ id: 7, label: "Vue 3/Router" },
-				{ id: 8, label: "Bootstrap" },
-				{ id: 9, label: "Adaptive layout" },
-				{ id: 10, label: "Choose all" },
+				{ id: 1, label: "Stylus, Sass, Less", selected: false },
+				{ id: 2, label: "Gulp, Webpack, Grunt", selected: false },
+				{ id: 3, label: "Working with API", selected: false },
+				{ id: 4, label: "SQL/MySQL/PostreSQL/NoSQL", selected: false },
+				{ id: 5, label: "Node Js", selected: false },
+				{ id: 6, label: "Docker", selected: false },
+				{ id: 7, label: "Vue 3/Router", selected: false },
+				{ id: 8, label: "Bootstrap", selected: false },
+				{ id: 9, label: "Adaptive layout", selected: false },
 			],
 			isHiddenSmallModal: false,
+			checked: false,
+			isValidation: false,
 		};
 	},
 	methods: {
+		validationInput() {
+			if (this.inputValue.length === 0) {
+				this.isValidation = true;
+			}
+		},
 		showModal() {
 			this.isVisibleModal = true;
 		},
@@ -150,17 +176,16 @@ export default {
 		closeSmallModal() {
 			this.isHiddenSmallModal = null;
 		},
+		/*eslint-disable*/
 		chooseAllSkills() {
-			const selected = [];
-			if (this.checkedSkills === false) {
-				for (let i in this.arrSkills) {
-					selected.push(this.arrSkills[i].id);
-				}
-			}
+			this.checked = !this.checked;
+			this.arrSkills.forEach((item) => (item.selected = this.checked));
 		},
 		showSentlModal() {
-			this.isVisibleModal = false;
-			this.isHiddenSmallModal = true;
+			if (this.isValidation) {
+				this.isVisibleModal = false;
+				this.isHiddenSmallModal = true;
+			} else this.validationInput();
 		},
 	},
 };
@@ -173,5 +198,8 @@ export default {
 }
 .form-control-sm {
 	width: 94%;
+}
+.font-small {
+	font-size: smaller;
 }
 </style>
