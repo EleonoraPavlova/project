@@ -19,9 +19,14 @@
 				size="form-control-sm"
 			/>
 			<div v-if="isValidation">
-				<p class="dangerous text-center lh-1 fw-lighter font-small">
+				<small class="dangerous text-center lh-1 fw-lighter">
 					Enter your name please
-				</p>
+				</small>
+				<div v-if="isValidationOnNumbers">
+					<small class="dangerous text-center lh-1 fw-lighter">
+						Name must not contain numbers
+					</small>
+				</div>
 			</div>
 
 			<SelectInput v-model="modelValueAge" class="m-2"
@@ -72,6 +77,7 @@
 				</div>
 			</div>
 			<MyButtons
+				:type="submit"
 				class="btn-outline-success"
 				color="light"
 				size="sm"
@@ -159,14 +165,26 @@ export default {
 			isHiddenSmallModal: false,
 			checked: false,
 			isValidation: false,
+			isValidationOnNumbers: false,
 		};
 	},
 	methods: {
 		validationInput() {
-			if (this.inputValue.length === 0) {
+			if (this.inputValue.length === 0 || this.inputValue.length === 1) {
 				this.isValidation = true;
+				const that = this;
+				setTimeout(function () {
+					that.isValidation = false;
+				}, 3000);
 			}
 		},
+		// validationInputNum() {
+		// 	if (this.inputValue == !isNaN) {
+		// 		this.isValidation = false;
+		// 		this.isValidationOnNumbers = true;
+		// 		this.inputValue = "";
+		// 	}
+		// },
 		showModal() {
 			this.isVisibleModal = true;
 		},
@@ -182,10 +200,17 @@ export default {
 			this.arrSkills.forEach((item) => (item.selected = this.checked));
 		},
 		showSentlModal() {
-			if (this.isValidation) {
+			this.validationInput();
+			// this.validationInputNum();
+			if (!this.isValidation) {
 				this.isVisibleModal = false;
 				this.isHiddenSmallModal = true;
-			} else this.validationInput();
+			}
+			this.inputValue = "";
+			this.modelValueCity = "";
+			this.modelValueAge = "";
+			this.checked = false;
+			this.selected = false;
 		},
 	},
 };

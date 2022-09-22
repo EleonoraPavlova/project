@@ -1,6 +1,5 @@
 <template>
 	<button
-		type="button"
 		class="btn m-1"
 		:class="[`btn-${color}`, `btn-${size}`]"
 		@click="$emit('click')"
@@ -20,6 +19,10 @@ export default {
 		size: {
 			type: String,
 			default: "lg",
+		},
+		type: {
+			type: String,
+			default: "",
 		},
 	},
 	emits: ["click"],

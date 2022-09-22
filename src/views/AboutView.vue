@@ -79,6 +79,7 @@ export default {
 	},
 	data() {
 		return {
+			index: 0,
 			arraySteps: ["Basics", "Components", "Router", "Vuex", "Composition"],
 			titleAbout: "Vue 3 study plan",
 			arrayDescriprtion: [
