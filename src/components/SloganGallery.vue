@@ -15,6 +15,11 @@ export default {
 	font-weight: bold;
 	font-size: 60px;
 	filter: drop-shadow(0 0 5px green);
+	@include for-phone-only {
+		font-weight: 400;
+		font-size: 16px;
+		margin-top: 8px;
+	}
 	@include for-tablet-portrait-up {
 		font-weight: 400;
 		font-size: 20px;
