@@ -84,8 +84,6 @@ export default {
 				const response = await axios.request(options);
 				this.articles = response.data.articles;
 				this.totalPages = response.data.total_pages;
-				// /*eslint-disable*/
-				// debugger;
 			} catch (e) {
 				this.open();
 			}

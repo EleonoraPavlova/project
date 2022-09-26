@@ -12,7 +12,7 @@
 			<DescriptionVue :class="{ active: activeChapter === index }">{{
 				arrayDescriprtion[activeChapter]
 			}}</DescriptionVue>
-			<div class="d-flex justify-content-between p-4">
+			<div class="d-flex justify-content-between p-4 about-mobile">
 				<StepPagination
 					v-for="(step, index) in arraySteps"
 					:key="index"
@@ -122,5 +122,20 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+@import "../assets/mixins.scss";
+.about-mobile {
+	@include for-phone-only {
+		flex-direction: column;
+	}
+	@include for-tablet-portrait-up {
+		flex-direction: column;
+	}
+	// @include for-tablet-landscape-up {
+	// 	width: 50%;
+	// }
+	// @include for-desktop-up {
+	// 	width: 45%;
+	// }
+}
 </style>

@@ -5,7 +5,8 @@
 		<router-link to="/news">News</router-link> |
 		<router-link to="/blog">Blog</router-link> |
 		<router-link to="/vacancies">Vacancies</router-link> |
-		<router-link to="/gallery">Gallery</router-link>
+		<router-link to="/gallery">Gallery</router-link> |
+		<router-link to="/database">Database</router-link>
 	</nav>
 	<router-view />
 </template>

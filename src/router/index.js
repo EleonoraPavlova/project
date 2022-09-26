@@ -5,6 +5,7 @@ import NewsView from "../views/NewsView.vue";
 import BlogView from "../views/BlogView.vue";
 import VacanciesView from "../views/VacanciesView.vue"
 import GalleryView from "../views/GalleryView.vue"
+import DataBaseView from "../views/DataBaseView.vue"
 
 const routes = [
   {
@@ -36,6 +37,11 @@ const routes = [
     path: "/gallery",
     name: "gallery",
     component: GalleryView,
+  },
+  {
+    path: "/database",
+    name: "database",
+    component: DataBaseView,
   },
 ];
 

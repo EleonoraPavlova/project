@@ -5,20 +5,8 @@
 			<MyButtons class="btn-success m-4" size="sm" @click="getImagesMore()"
 				>Change images</MyButtons
 			>
-			<div
-				class="
-					d-flex
-					justify-content-center
-					align-items-stretch
-					mx-4
-					wrapper-gallery
-				"
-			>
-				<div
-					v-for="value in images"
-					:key="value.image"
-					class="p-3 inner-gallery"
-				>
+			<div class="d-flex justify-content-center mx-4 wrapper-gallery">
+				<div v-for="value in images" :key="value.image" class="inner-gallery">
 					<div
 						:style="{ backgroundImage: `url(${value.image})` }"
 						alt="img"
@@ -148,8 +136,8 @@ export default {
 	background-size: cover;
 	background-position: center;
 	@include for-phone-only {
-		width: 250px;
-		height: 250px;
+		width: 260px;
+		height: 240px;
 	}
 	@include for-tablet-portrait-up {
 		width: 270px;
