@@ -15,17 +15,23 @@
 				ps-4
 				justify-content-between
 				align-items-center
+				word-wrap
+				data-mobile
 			"
 		>
-			{{ person.firstName }}
-			<div class="d-flex justify-content-center">
-				<MyButtons
-					color="light"
-					class="btn-outline-danger"
-					size="sm"
-					@click="$emit('detele-person', person.id)"
-					>Delete</MyButtons
-				>
+			<p class="data-mobile__name">
+				{{ person.firstName }}
+			</p>
+			<div class="data-mobile__btn">
+				<div class="d-flex justify-content-center">
+					<MyButtons
+						color="light"
+						class="btn-outline-danger"
+						size="sm"
+						@click="$emit('detele-person', person.id)"
+						>Delete</MyButtons
+					>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -57,5 +63,34 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
+@import "../assets/mixins.scss";
+.word-wrap {
+	word-break: break-all;
+	overflow-x: hidden;
+}
+.form-control-sm {
+	@include for-phone-only {
+		width: 100%;
+	}
+}
+.data-mobile {
+	display: flex;
+	@include for-phone-only {
+		padding: 12px 7px 12px 0;
+	}
+	&__btn {
+		@include for-phone-only {
+			width: 50%;
+			display: flex;
+			justify-content: center;
+		}
+	}
+	&__name {
+		@include for-phone-only {
+			width: 85%;
+			margin-bottom: 0px;
+		}
+	}
+}
 </style>

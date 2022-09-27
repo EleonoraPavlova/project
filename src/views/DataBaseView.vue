@@ -3,21 +3,36 @@
 		<MistakeMessage :alert="alert" @close-alert="alert = null" />
 		<H1Component>Work with database</H1Component>
 		<div class="form-control" @submit.prevent="createPerson()">
-			<div class="m-4">
-				<MyInput
-					v-model.trim="name"
-					:placeholder="`Enter full name`"
-					size="form-control-sm"
-					@keypress.enter="createPerson()"
-				/>
-				<MyButtons
-					class="btn-success"
-					size="sm"
-					:disabled="name.length === 0"
-					@click="createPerson()"
-					>Create a person</MyButtons
-				>
+			<div class="m-4 d-flex justify-content-center data-mobile">
+				<div class="flex-shrink-1">
+					<MyInput
+						v-model.trim="name"
+						:placeholder="`Enter full name`"
+						size="form-control-sm"
+						@keypress.enter="createPerson()"
+					/>
+					<div class="div">
+						<div v-show="name.length < 3 && name.length !== 0">
+							<p class="dangerous fw-lighter">Name is too short</p>
+						</div>
+						<div v-show="name.length > 60">
+							<p class="dangerous fw-lighter">
+								Name is too long, write shorter please
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="data-mobile__btn">
+					<MyButtons
+						class="btn-success"
+						size="sm"
+						:disabled="name.length === 0"
+						@click="createPerson()"
+						>Create a person</MyButtons
+					>
+				</div>
 			</div>
+
 			<div class="m-4">
 				<DataBaseList
 					:people="people"
@@ -53,11 +68,8 @@ export default {
 			alert: null,
 		};
 	},
-	watch: {
-		"name.length"() {
-			this.alert = null;
-		},
-	},
+	// watch: {
+	// },
 	mounted() {
 		//хук вызывается, когда дерево DOM компонента готово!
 		//чтобы подгружать сразу массив people, которые были записаны до вызова downloadPerson ()
@@ -66,6 +78,11 @@ export default {
 	methods: {
 		//без axios
 		async createPerson() {
+			if (!this.name) {
+				//пустого человека не создавать
+				this.name = "";
+				return;
+			}
 			const response = await fetch(
 				"https://vue-with-http2022-default-rtdb.europe-west1.firebasedatabase.app/people.json",
 				{
@@ -114,7 +131,7 @@ export default {
 				});
 			} catch (e) {
 				this.alert = {
-					type: "danger",
+					class: "border border-danger",
 					title: "Mistake!",
 					text: e.message,
 				};
@@ -124,18 +141,44 @@ export default {
 			//удалить с сервера и с интерфейса
 			await axios.delete(
 				`https://vue-with-http2022-default-rtdb.europe-west1.firebasedatabase.app/people/${id}.json`,
-				(this.people = this.people.filter((person) => person.id !== id))
+				(this.people = this.people.filter((person) => person.id !== id)),
+				(this.alert = {
+					class: " border border-success",
+					title: "Success!",
+					text: "User has been deleted",
+				})
 			);
 		},
 	},
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "../assets/mixins.scss";
 .form-control-sm {
 	@include for-phone-only {
 		width: 90%;
 	}
+}
+.data-mobile {
+	display: flex;
+	@include for-phone-only {
+		flex-direction: column;
+		align-items: center;
+	}
+	&__btn {
+		@include for-phone-only {
+			width: 50%;
+			display: flex;
+			justify-content: center;
+		}
+	}
+}
+
+.fw-lighter {
+	line-height: 1;
+}
+.flex-shrink-1 {
+	flex-basis: 74%;
 }
 </style>

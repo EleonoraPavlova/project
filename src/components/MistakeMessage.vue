@@ -1,11 +1,10 @@
 <template>
 	<div
 		v-if="alert"
-		:class="alert.type"
+		:class="alert.class"
 		class="
 			mistake-width
 			p-2
-			border border-danger
 			rounded-2
 			d-flex
 			justify-content-evenly
