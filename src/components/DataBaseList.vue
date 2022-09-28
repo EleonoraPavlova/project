@@ -19,7 +19,7 @@
 				data-mobile
 			"
 		>
-			<p class="data-mobile__name">
+			<p class="data-mobile__name mb-0">
 				{{ person.firstName }}
 			</p>
 			<div class="data-mobile__btn">
@@ -88,8 +88,6 @@ export default {
 	}
 	&__name {
 		@include for-phone-only {
-			width: 85%;
-			margin-bottom: 0px;
 		}
 	}
 }

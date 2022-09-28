@@ -3,7 +3,9 @@
 		<MistakeMessage :alert="alert" @close-alert="alert = null" />
 		<H1Component>Work with database</H1Component>
 		<div class="form-control" @submit.prevent="createPerson()">
-			<div class="m-4 d-flex justify-content-center data-mobile">
+			<div
+				class="m-4 d-flex justify-content-center align-items-center data-mobile"
+			>
 				<div class="flex-shrink-1">
 					<MyInput
 						v-model.trim="name"
@@ -32,8 +34,13 @@
 					>
 				</div>
 			</div>
-
-			<div class="m-4">
+			<div
+				v-if="loading"
+				class="d-flex justify-content-center align-items-center"
+			>
+				<LoaderComponent />
+			</div>
+			<div v-else class="m-4">
 				<DataBaseList
 					:people="people"
 					@download="downloadPerson()"
@@ -51,6 +58,7 @@ import MyInput from "../components/MyInput.vue";
 import MyButtons from "../components/MyButtons.vue";
 import DataBaseList from "../components/DataBaseList.vue";
 import MistakeMessage from "../components/MistakeMessage.vue";
+import LoaderComponent from "../components/LoaderComponent.vue";
 
 export default {
 	name: "DataBaseView",
@@ -60,25 +68,29 @@ export default {
 		MyButtons,
 		DataBaseList,
 		MistakeMessage,
+		LoaderComponent,
 	},
 	data() {
 		return {
 			name: "",
 			people: [],
 			alert: null,
+			loading: false,
+			initialLoad: true, //знать первая загрузка или нет(чтобы не показывалось окошко алерта после перегрузки страницы)
 		};
 	},
 	// watch: {
 	// },
-	mounted() {
+	async created() {
 		//хук вызывается, когда дерево DOM компонента готово!
 		//чтобы подгружать сразу массив people, которые были записаны до вызова downloadPerson ()
-		this.downloadPerson();
+		await this.downloadPerson();
+		this.initialLoad = false; //меняется при перегрузке страницы
 	},
 	methods: {
 		//без axios
 		async createPerson() {
-			if (!this.name) {
+			if (!this.name || this.name.length <= 3) {
 				//пустого человека не создавать
 				this.name = "";
 				return;
@@ -103,6 +115,10 @@ export default {
 				id: firebaseData.name,
 			});
 			this.name = "";
+
+			if (this.people.length >= 1) {
+				this.alert = null;
+			}
 		},
 		async downloadPerson() {
 			//грузим данные с сервера, ответ приходит в {}, а мне нужно трансформ в [] => нужно распарсить объект с помощью Object.keys,
@@ -110,6 +126,8 @@ export default {
 			//далee итерация map, чтобы получить ключ на каждой итерации, ключ будет равняться каждой из этих строчек - ( типа "-NCebAr8AwI3IAreyDHH")
 			//поэтому получается, что id : key, и поле для имени человека, напрм name: data[key].firstName
 			//когда есть множество ключей лучше использовать оператор спред ...data[key], чтобы все ключи которые есть в обьекте развернулись в результирующий обьект
+
+			this.loading = true;
 			try {
 				const { data } = await axios.get(
 					"https://vue-with-http2022-default-rtdb.europe-west1.firebasedatabase.app/people.json"
@@ -129,25 +147,50 @@ export default {
 						...data[key],
 					};
 				});
+				this.loading = false;
 			} catch (e) {
-				this.alert = {
-					class: "border border-danger",
-					title: "Mistake!",
-					text: e.message,
-				};
+				if (!this.initialLoad) {
+					this.alert = {
+						class: "border border-danger",
+						title: "Mistake!",
+						text: e.message,
+					};
+				}
 			}
+			this.loading = false;
 		},
 		async deletePerson(id) {
 			//удалить с сервера и с интерфейса
-			await axios.delete(
-				`https://vue-with-http2022-default-rtdb.europe-west1.firebasedatabase.app/people/${id}.json`,
-				(this.people = this.people.filter((person) => person.id !== id)),
-				(this.alert = {
-					class: " border border-success",
+			try {
+				//удаляем человека и выводим конкретно его имя
+				const thisName = this.people.find(
+					(person) => person.id === id
+				).firstName;
+				await axios.delete(
+					`https://vue-with-http2022-default-rtdb.europe-west1.firebasedatabase.app/people/${id}.json`
+				);
+				this.people = this.people.filter((person) => person.id !== id);
+				this.alert = {
+					class: "border border-success",
 					title: "Success!",
-					text: "User has been deleted",
-				})
-			);
+					text: `User ${thisName} has been deleted`,
+				};
+				setTimeout(() => {
+					this.alert = null;
+				}, 1000);
+			} catch (e) {
+				this.open();
+			}
+		},
+		open() {
+			this.$toast.open({
+				//ToastPlugin код
+				message: "The list of people is empty",
+				type: "error",
+				duration: 5000,
+				dismissible: true,
+				//position: "left-right", //тут меняем положение окошка с ошибкой на странице по желанию
+			});
 		},
 	},
 };
@@ -156,6 +199,7 @@ export default {
 <style lang="scss" scoped>
 @import "../assets/mixins.scss";
 .form-control-sm {
+	width: 95%;
 	@include for-phone-only {
 		width: 90%;
 	}
