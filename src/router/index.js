@@ -6,6 +6,7 @@ import BlogView from "../views/BlogView.vue";
 import VacanciesView from "../views/VacanciesView.vue"
 import GalleryView from "../views/GalleryView.vue"
 import DataBaseView from "../views/DataBaseView.vue"
+import CVconstructor from "../views/CVconstructor.vue"
 
 const routes = [
   {
@@ -42,6 +43,11 @@ const routes = [
     path: "/database",
     name: "database",
     component: DataBaseView,
+  },
+  {
+    path: "/cvconstructor",
+    name: "cvconstructor",
+    component: CVconstructor,
   },
 ];
 

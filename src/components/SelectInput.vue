@@ -4,6 +4,7 @@
 		:value="modelValue"
 		@chooseA="chooseAge"
 		@chooseC="chooseCity"
+		@chooseT="chooseType"
 	>
 		<slot />
 	</select>
@@ -19,13 +20,20 @@ export default {
 			default: "",
 		},
 	},
-	emits: ["update:modelValue", "update:modelValueCity"],
+	emits: [
+		"update:modelValue",
+		"update:modelValueCity",
+		"update:modelValueType",
+	],
 	methods: {
 		chooseAge(event) {
 			this.$emit("update:modelValue", event.target.value);
 		},
 		chooseCity(event) {
 			this.$emit("update:modelValueCity", event.target.value);
+		},
+		chooseType(event) {
+			this.$emit("update:modelValueType", event.target.value);
 		},
 	},
 };

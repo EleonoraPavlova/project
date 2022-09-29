@@ -31,7 +31,8 @@
 					@click="deleteNote(index)"
 					@edit="onEdit(index)"
 					@saved="onSave()"
-					>{{ index }} , {{ editingNote }}
+				>
+					{{ editingNote }}
 					<span
 						v-if="editingNote != index"
 						:class="note.length > 5 ? 'success' : 'dt'"
