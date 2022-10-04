@@ -30,6 +30,8 @@ module.exports = {
       "svg": "always",
       "math": "always"
     }],
-    "vue/html-indent": "off"
+    "vue/html-indent": "off",
+    "no-debugger": process.env.NODE_ENV === 'production' ? 'error' : 'off',
+
   }
 }

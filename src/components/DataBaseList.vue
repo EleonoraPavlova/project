@@ -50,7 +50,6 @@ import MyButtons from "./MyButtons.vue";
 export default {
 	name: "DataBaseList",
 	components: { DescriptionVue, MyButtons },
-
 	props: {
 		people: {
 			type: Array,

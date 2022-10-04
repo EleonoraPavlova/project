@@ -141,6 +141,7 @@ export default {
 				if (!data) {
 					throw new Error("The list of people is empty");
 				}
+				//нужно объект трансформировать в массив
 				this.people = Object.keys(data).map((key) => {
 					return {
 						id: key,

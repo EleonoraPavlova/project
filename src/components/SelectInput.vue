@@ -1,11 +1,5 @@
 <template>
-	<select
-		class="rounded p-1"
-		:value="modelValue"
-		@chooseA="chooseAge"
-		@chooseC="chooseCity"
-		@chooseT="chooseType"
-	>
+	<select class="rounded p-1" :value="modelValue" @input="onInput">
 		<slot />
 	</select>
 </template>
@@ -20,20 +14,10 @@ export default {
 			default: "",
 		},
 	},
-	emits: [
-		"update:modelValue",
-		"update:modelValueCity",
-		"update:modelValueType",
-	],
+	emits: ["update:modelValue"],
 	methods: {
-		chooseAge(event) {
+		onInput(event) {
 			this.$emit("update:modelValue", event.target.value);
-		},
-		chooseCity(event) {
-			this.$emit("update:modelValueCity", event.target.value);
-		},
-		chooseType(event) {
-			this.$emit("update:modelValueType", event.target.value);
 		},
 	},
 };

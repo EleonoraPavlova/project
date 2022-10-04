@@ -10,7 +10,7 @@
 		</div>
 		<ModalWindow v-model:show="isVisibleModal" class="position-relative">
 			<div class="position-absolute top-0 end-0">
-				<CloseButton @click="closeModal()" />
+				<CloseButton class="btn-close" size="sm" @click="closeModal()" />
 			</div>
 			<DescriptionVue><strong>Fill out the form</strong> </DescriptionVue>
 			<MyInput
@@ -77,7 +77,7 @@
 				</div>
 			</div>
 			<MyButtons
-				:type="submit"
+				type="submit"
 				class="btn-outline-success"
 				color="light"
 				size="sm"

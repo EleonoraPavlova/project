@@ -13,7 +13,7 @@
 	>
 		<h6 class="m-2">{{ alert.title }}</h6>
 		<p class="m-2">{{ alert.text }}</p>
-		<CloseButton @click="$emit('closeAlert')" />
+		<CloseButton class="btn-close" size="xs" @click="$emit('closeAlert')" />
 	</div>
 </template>
 

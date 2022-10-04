@@ -6,7 +6,7 @@ import BlogView from "../views/BlogView.vue";
 import VacanciesView from "../views/VacanciesView.vue"
 import GalleryView from "../views/GalleryView.vue"
 import DataBaseView from "../views/DataBaseView.vue"
-import CVconstructor from "../views/CVconstructor.vue"
+import CVconstructorView from "../views/CVconstructorView.vue"
 
 const routes = [
   {
@@ -47,7 +47,7 @@ const routes = [
   {
     path: "/cvconstructor",
     name: "cvconstructor",
-    component: CVconstructor,
+    component: CVconstructorView,
   },
 ];
 
