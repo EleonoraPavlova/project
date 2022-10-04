@@ -19,13 +19,15 @@
 				</div>
 			</div>
 		</div>
-		<MyButtons
-			type="submit"
-			class="btn-outline-success d-flex justify-content-start"
-			color="light"
-			size="lg"
-			>Send resume</MyButtons
-		>
+		<div class="d-flex justify-content-md-end cv-button">
+			<MyButtons
+				type="submit"
+				class="btn-outline-success"
+				color="light"
+				size="lg"
+				>Download comments</MyButtons
+			>
+		</div>
 	</div>
 </template>
 
@@ -107,10 +109,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../assets/mixins.scss";
 .cvbox {
 	display: grid;
 	grid-template-columns: 33% 64%;
 	gap: 20px;
+	@include for-phone-only {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
 
 	&__left {
 		grid-area: 1 / 1 / 2 / 2;
@@ -121,5 +130,33 @@ export default {
 		align-items: center;
 	}
 }
+.cv-button {
+	@include for-phone-only {
+		justify-content: center;
+		align-items: center;
+	}
+	@include for-tablet-portrait-up {
+		justify-content: center;
+		align-items: center;
+	}
+}
+.p-3 {
+	@include for-phone-only {
+		padding: 5px;
+	}
+	@include for-tablet-portrait-up {
+		padding: 7px;
+	}
+}
+
+// 	@include for-tablet-landscape-up {
+// 		font-weight: 400;
+// 		font-size: 35px;
+// 		margin-top: 5px;
+// 	}
+// 	@include for-desktop-up {
+// 		font-size: 40px;
+// 	}
+// }
 </style>
 

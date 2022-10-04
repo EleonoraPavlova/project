@@ -16,12 +16,18 @@
 					mb-3
 					form-control
 					p-3
+					cv-boxItem
 				"
 			>
 				<template v-if="editingItemIndex !== index">
 					<div
 						v-if="info.key === 'Full name'"
-						class="d-flex justify-content-evenly align-items-center"
+						class="
+							d-flex
+							justify-content-evenly
+							align-items-center
+							cv-itemSelect
+						"
 					>
 						<p class="mb-0 mx-4">Full name:</p>
 						<p class="mb-0 mx-4">
@@ -30,7 +36,12 @@
 					</div>
 					<div
 						v-if="info.key === 'Avatar'"
-						class="d-flex justify-content-center align-items-center"
+						class="
+							d-flex
+							justify-content-center
+							align-items-center
+							cv-itemSelect
+						"
 					>
 						<p class="mb-0 mx-4">Avatar:</p>
 						<img
@@ -41,7 +52,12 @@
 					</div>
 					<div
 						v-if="info.key === 'Title'"
-						class="d-flex justify-content-between align-items-center"
+						class="
+							d-flex
+							justify-content-between
+							align-items-center
+							cv-itemSelect
+						"
 					>
 						<p class="mb-0 mx-4">Title:</p>
 						<p class="mb-0 mx-4">
@@ -49,9 +65,9 @@
 						</p>
 					</div>
 
-					<div class="">
-						<p v-if="info.key === 'About me'">
-							<strong class="mx-4">About me: </strong>
+					<div class="cv-itemSelect">
+						<p v-if="info.key === 'About me'" class="text-sm-start ms-4">
+							<strong class="me-4">About me: </strong>
 							{{ info.value }}
 						</p>
 					</div>
@@ -60,7 +76,7 @@
 					{{ info.value }}
 					<MyInput v-model="editingValue" @keypress.enter="onSaveItem()" />
 				</template>
-				<div class="d-flex justify-content-around align-items-center">
+				<div class="d-flex align-items-center ms-2">
 					<MyButtons
 						v-if="editingItemIndex !== index"
 						color="light"
@@ -80,7 +96,7 @@
 						@click="onSaveItem"
 						>Save</MyButtons
 					>
-					<div class="p-4">
+					<div class="p-2 d-flex justify-content-center align-items-center">
 						<CloseButton size="clxs" @click="$emit('closeItemResume', index)" />
 					</div>
 				</div>
@@ -133,8 +149,31 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../assets/mixins.scss";
 .cv-image {
 	width: 160px;
 	height: 160px;
+}
+.cv-boxItem {
+	@include for-phone-only {
+		flex-direction: column;
+	}
+	@include for-tablet-portrait-up {
+		flex-direction: column;
+	}
+
+	// 	@include for-tablet-landscape-up {
+	//
+	// 	}
+	// 	@include for-desktop-up {
+	// }
+	.cv-itemSelect {
+		@include for-phone-only {
+			margin-bottom: 12px !important;
+		}
+		@include for-tablet-portrait-up {
+			margin-bottom: 13px !important;
+		}
+	}
 }
 </style>

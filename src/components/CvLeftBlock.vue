@@ -2,7 +2,6 @@
 	<DescriptionVue>Fill in the fields:</DescriptionVue>
 	<div class="d-flex justify-content-start">
 		<SelectInput v-model="modelValueType" class="my-3 width">
-			<option disabled value="">Select block type</option>
 			<option
 				v-for="blockType in blockTypes"
 				:key="blockType"
@@ -13,7 +12,7 @@
 			</option>
 		</SelectInput>
 	</div>
-	<div class="position-relativ mb-4">
+	<div class="position-relativ mb-4 cv-left">
 		<TextArea
 			v-model.trim="resumeText"
 			:placeholder="`Enter value.....`"
@@ -57,8 +56,8 @@ export default {
 	emits: ["addedInfo"],
 	data() {
 		return {
-			modelValueType: "",
-			blockTypes: ["Full name", "Title", "Avatar", "About me"],
+			modelValueType: "Title",
+			blockTypes: ["Title", "Full name", "Avatar", "About me"],
 			resumeText: "",
 			isSuccess: false,
 		};
@@ -93,7 +92,7 @@ export default {
 				} catch (e) {
 					console.log(e);
 				}
-				this.modelValueType = "";
+				this.modelValueType = "Title"; // по умолчанию остается Title
 				this.resumeText = "";
 			}
 		},
@@ -102,7 +101,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../assets/mixins.scss";
 .width {
 	width: 100%;
+}
+.cv-left {
+	@include for-phone-only {
+		margin-bottom: 0px !important;
+	}
 }
 </style>
