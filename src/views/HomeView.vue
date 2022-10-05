@@ -31,8 +31,7 @@
 					@click="deleteNote(index)"
 					@edit="onEdit(index)"
 					@saved="onSave()"
-				>
-					{{ editingNote }}
+					>{{ index }} , {{ editingNote }}
 					<span
 						v-if="editingNote != index"
 						:class="note.length > 5 ? 'success' : 'dt'"
@@ -49,9 +48,9 @@
 
 <script>
 import H1Component from "../components/H1Component.vue";
-import MyButtons from "../components/MyButtons.vue";
+import MyButtons from "../components/common/MyButtons.vue";
 import MyInput from "../components/MyInput.vue";
-import ArrayNotes from "../components/ArrayNotes.vue";
+import ArrayNotes from "../components/home/ArrayNotes.vue";
 import TotalCount from "../components/TotalCount.vue";
 
 export default {

@@ -93,7 +93,7 @@
 
 <script>
 import DescriptionVue from "../components/DescriptionVue.vue";
-import MyButtons from "../components/MyButtons.vue";
+import MyButtons from "./common/MyButtons.vue";
 import ModalWindow from "../components/ModalWindow.vue";
 import MyInput from "../components/MyInput.vue";
 import SelectInput from "../components/SelectInput.vue";

@@ -43,7 +43,7 @@
 
 <script>
 import DescriptionVue from "./DescriptionVue.vue";
-import MyButtons from "./MyButtons.vue";
+import MyButtons from "./common/MyButtons.vue";
 import CardOne from "./CardOne.vue";
 import CardTwo from "./CardTwo.vue";
 

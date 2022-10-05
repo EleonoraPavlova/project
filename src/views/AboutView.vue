@@ -68,7 +68,7 @@
 import H1Component from "../components/H1Component.vue";
 import DescriptionVue from "../components/DescriptionVue.vue";
 import StepPagination from "../components/StepPagination.vue";
-import MyButtons from "../components/MyButtons.vue";
+import MyButtons from "../components/common/MyButtons.vue";
 
 export default {
 	components: {

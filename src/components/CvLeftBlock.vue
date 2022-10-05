@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import MyButtons from "./MyButtons.vue";
+import MyButtons from "./common/MyButtons.vue";
 import TextArea from "./TextArea.vue";
 import SelectInput from "./SelectInput.vue";
 import DescriptionVue from "./DescriptionVue.vue";
@@ -107,6 +107,9 @@ export default {
 }
 .cv-left {
 	@include for-phone-only {
+		margin-bottom: 0px !important;
+	}
+	@include for-tablet-portrait-up {
 		margin-bottom: 0px !important;
 	}
 }

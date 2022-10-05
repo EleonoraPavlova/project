@@ -33,7 +33,7 @@
 <script>
 import DescriptionVue from "./DescriptionVue.vue";
 import BlogIcon from "./BlogIcon.vue";
-import MyButtons from "./MyButtons.vue";
+import MyButtons from "./common/MyButtons.vue";
 
 export default {
 	name: "CardTwo",

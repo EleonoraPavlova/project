@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import MyButtons from "./MyButtons.vue";
+import MyButtons from "./common/MyButtons.vue";
 
 export default {
 	name: "PaginationPages",

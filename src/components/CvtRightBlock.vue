@@ -34,22 +34,18 @@
 							<strong>{{ info.value }}</strong>
 						</p>
 					</div>
+
 					<div
 						v-if="info.key === 'Avatar'"
-						class="
-							d-flex
-							justify-content-center
-							align-items-center
-							cv-itemSelect
-						"
+						class="d-flex align-items-center cv-itemSelect wrap-image"
 					>
-						<p class="mb-0 mx-4">Avatar:</p>
 						<img
 							:src="info.value"
 							alt="avatar"
 							class="border border-success rounded-circle cv-image mx-4"
 						/>
 					</div>
+
 					<div
 						v-if="info.key === 'Title'"
 						class="
@@ -76,7 +72,15 @@
 					{{ info.value }}
 					<MyInput v-model="editingValue" @keypress.enter="onSaveItem()" />
 				</template>
-				<div class="d-flex align-items-center ms-2">
+				<div
+					class="
+						d-flex
+						align-items-center
+						justify-content-end
+						cv-right-width
+						ms-2
+					"
+				>
 					<MyButtons
 						v-if="editingItemIndex !== index"
 						color="light"
@@ -107,7 +111,7 @@
 
 <script>
 import DescriptionVue from "../components/DescriptionVue.vue";
-import MyButtons from "../components/MyButtons.vue";
+import MyButtons from "./common/MyButtons.vue";
 import MyInput from "../components/MyInput.vue";
 import CloseButton from "../components/CloseButton.vue";
 
@@ -150,6 +154,23 @@ export default {
 
 <style lang="scss" scoped>
 @import "../assets/mixins.scss";
+.cv-right-width {
+	@include for-phone-only {
+		width: 100%;
+	}
+	@include for-tablet-portrait-up {
+		width: 100%;
+	}
+}
+.wrap-image {
+	margin-left: 36%;
+	@include for-phone-only {
+		margin-left: 0;
+	}
+	@include for-tablet-portrait-up {
+		margin-left: 0;
+	}
+}
 .cv-image {
 	width: 160px;
 	height: 160px;
@@ -161,19 +182,27 @@ export default {
 	@include for-tablet-portrait-up {
 		flex-direction: column;
 	}
-
-	// 	@include for-tablet-landscape-up {
-	//
-	// 	}
-	// 	@include for-desktop-up {
-	// }
-	.cv-itemSelect {
-		@include for-phone-only {
-			margin-bottom: 12px !important;
-		}
-		@include for-tablet-portrait-up {
-			margin-bottom: 13px !important;
-		}
+}
+// 	@include for-tablet-landscape-up {
+// 	}
+// 	@include for-desktop-up {
+// }
+.cv-itemSelect {
+	@include for-phone-only {
+		justify-content: center;
+		margin-bottom: 12px !important;
+	}
+	@include for-tablet-portrait-up {
+		margin-bottom: 13px !important;
+		justify-content: center;
+	}
+}
+.ms-4 {
+	@include for-phone-only {
+		margin-left: 0px !important;
+	}
+	@include for-tablet-portrait-up {
+		margin-left: 0px !important;
 	}
 }
 </style>

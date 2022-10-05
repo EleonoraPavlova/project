@@ -44,7 +44,7 @@
 
 <script>
 import DescriptionVue from "../components/DescriptionVue.vue";
-import MyButton from "./MyButtons.vue";
+import MyButton from "./common/MyButtons.vue";
 
 export default {
 	name: "NewsBox",

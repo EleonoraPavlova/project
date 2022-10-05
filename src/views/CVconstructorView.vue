@@ -25,9 +25,10 @@
 				class="btn-outline-success"
 				color="light"
 				size="lg"
-				>Download comments</MyButtons
+				>Publish</MyButtons
 			>
 		</div>
+		<PublishCV />
 	</div>
 </template>
 
@@ -35,7 +36,8 @@
 import H1Component from "../components/H1Component.vue";
 import CvLeftBlock from "../components/CvLeftBlock.vue";
 import CvtRightBlock from "../components/CvtRightBlock.vue";
-import MyButtons from "../components/MyButtons.vue";
+import MyButtons from "../components/common/MyButtons.vue";
+import PublishCV from "../components/PublishCV.vue";
 import axios from "axios";
 
 export default {
@@ -45,6 +47,7 @@ export default {
 		CvLeftBlock,
 		MyButtons,
 		CvtRightBlock,
+		PublishCV,
 	},
 	data() {
 		return {
@@ -110,6 +113,20 @@ export default {
 
 <style lang="scss" scoped>
 @import "../assets/mixins.scss";
+.container {
+	@include for-phone-only {
+		padding: 0 15px;
+	}
+	@include for-tablet-portrait-up {
+		max-width: 99%;
+		padding: 0 20px;
+		margin-right: 0;
+		margin-left: 0;
+	}
+	@include for-tablet-landscape-up {
+		max-width: 99%;
+	}
+}
 .cvbox {
 	display: grid;
 	grid-template-columns: 33% 64%;
@@ -120,6 +137,10 @@ export default {
 		justify-content: center;
 		align-items: center;
 	}
+	@include for-tablet-portrait-up {
+		grid-template-columns: 43% 55%;
+		gap: 10px;
+	}
 
 	&__left {
 		grid-area: 1 / 1 / 2 / 2;
@@ -128,6 +149,22 @@ export default {
 		grid-area: 1 / 2 / 2 / 4;
 		justify-items: center;
 		align-items: center;
+	}
+}
+.p-4 {
+	@include for-phone-only {
+		padding: 8px !important;
+	}
+	@include for-tablet-portrait-up {
+		padding: 10px !important;
+	}
+}
+.mx-4 {
+	@include for-phone-only {
+		margin-left: 0px !important;
+	}
+	@include for-tablet-portrait-up {
+		margin-left: 0px !important;
 	}
 }
 .cv-button {
@@ -148,12 +185,6 @@ export default {
 		padding: 7px;
 	}
 }
-
-// 	@include for-tablet-landscape-up {
-// 		font-weight: 400;
-// 		font-size: 35px;
-// 		margin-top: 5px;
-// 	}
 // 	@include for-desktop-up {
 // 		font-size: 40px;
 // 	}
