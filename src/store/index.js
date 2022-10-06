@@ -1,9 +1,13 @@
 import { createStore } from "vuex";
+import resumeItems from "./resumeItems";
+
 
 export default createStore({
-  state: {},
+  state: {
+    someProperty: "Andrii is very handsome"
+  },
   getters: {},
   mutations: {},
   actions: {},
-  modules: {},
+  modules: { resumeItems },
 });

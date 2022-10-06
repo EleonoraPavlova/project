@@ -43,7 +43,6 @@ import MyButtons from "../common/MyButtons.vue";
 import TextArea from "../common/TextArea.vue";
 import SelectInput from "../common/SelectInput.vue";
 import DescriptionVue from "../common/DescriptionVue.vue";
-import axios from "axios";
 
 export default {
 	name: "CvLeftBlock",
@@ -63,38 +62,51 @@ export default {
 		};
 	},
 	methods: {
-		addInfo() {
+		async addInfo() {
+			//без store
 			//тут я связала 2 значения: select и  TextArea как объект ключ и значение
 
-			if (this.modelValueType && this.resumeText !== "") {
-				this.$emit("addedInfo", {
+			// if (this.modelValueType && this.resumeText !== "") {
+			// 	this.$emit("addedInfo", {
+			// 		key: this.modelValueType,
+			// 		value: this.resumeText,
+			// 	});
+			// try {
+			// 	axios
+			// 		.post(
+			// 			"https://vue-with-http2022-default-rtdb.europe-west1.firebasedatabase.app/resume.json",
+			// 			{
+			// 				key: this.modelValueType,
+			// 				value: this.resumeText,
+			// 			}
+			// 			//key value должно совпадать при запросе получения этой информации с сервера и при выводе в html
+			// 		)
+			// 		.then((response) => {
+			// 			this.isSuccess = true;
+			// 			const that = this;
+			// 			setTimeout(function () {
+			// 				that.isSuccess = false;
+			// 			}, 1000);
+			// 			console.log(response);
+			// 		});
+			// } catch (e) {
+			// 	console.log(e);
+			// }
+			try {
+				await this.$store.dispatch("resumeItems/createItem", {
 					key: this.modelValueType,
 					value: this.resumeText,
 				});
-				try {
-					axios
-						.post(
-							"https://vue-with-http2022-default-rtdb.europe-west1.firebasedatabase.app/resume.json",
-							{
-								key: this.modelValueType,
-								value: this.resumeText,
-							}
-							//key value должно совпадать при запросе получения этой информации с сервера и при выводе в html
-						)
-						.then((response) => {
-							this.isSuccess = true;
-							const that = this;
-							setTimeout(function () {
-								that.isSuccess = false;
-							}, 1000);
-							console.log(response);
-						});
-				} catch (e) {
-					console.log(e);
-				}
-				this.modelValueType = "Title"; // по умолчанию остается Title
-				this.resumeText = "";
+				this.isSuccess = true;
+				const that = this;
+				setTimeout(function () {
+					that.isSuccess = false;
+				}, 1000);
+			} catch (e) {
+				console.log(e);
 			}
+			this.modelValueType = "Title"; // по умолчанию остается Title
+			this.resumeText = "";
 		},
 	},
 };

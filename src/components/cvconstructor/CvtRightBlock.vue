@@ -101,10 +101,16 @@
 						>Save</MyButtons
 					>
 					<div class="p-2 d-flex justify-content-center align-items-center">
-						<CloseButton size="clxs" @click="$emit('closeItemResume', index)" />
+						<CloseButton size="clxs" @click="onDeleteItem(info.id)" />
 					</div>
 				</div>
 			</div>
+		</div>
+		<div v-if="isSuccessDelete" class="alert alert-success">
+			The item was successfully removed
+		</div>
+		<div v-if="allInfo.length === 0" class="alert alert-danger">
+			There is nothing here yet
 		</div>
 	</div>
 </template>
@@ -114,6 +120,7 @@ import DescriptionVue from "../common/DescriptionVue.vue";
 import MyButtons from "../common/MyButtons.vue";
 import MyInput from "../common/MyInput.vue";
 import CloseButton from "../common/CloseButton.vue";
+import { mapState } from "vuex";
 
 export default {
 	name: "CvtRightBlock",
@@ -123,12 +130,7 @@ export default {
 		MyInput,
 		CloseButton,
 	},
-	props: {
-		allInfo: {
-			type: Array,
-			default: () => [],
-		},
-	},
+
 	emits: ["closeItemResume", "saved"],
 	data() {
 		return {
@@ -136,9 +138,14 @@ export default {
 			editingItemIndex: null,
 			//отредактированное значение уже!
 			editingValue: null,
+			isSuccessDelete: false,
 		};
 	},
-
+	computed: {
+		...mapState({
+			allInfo: (state) => state.resumeItems.list,
+		}),
+	},
 	methods: {
 		onSaveItem() {
 			this.$emit("saved", {
@@ -147,6 +154,18 @@ export default {
 			});
 			this.editingItemIndex = null;
 			this.editingValue = null;
+		},
+		async onDeleteItem(id) {
+			try {
+				await this.$store.dispatch("resumeItems/deleteItem", id);
+				this.isSuccessDelete = true;
+				setTimeout(() => {
+					this.isSuccessDelete = false;
+				}, 1000);
+			} catch (e) {
+				console.log(e);
+				//тут добавить обработку ошибки
+			}
 		},
 	},
 };
@@ -183,10 +202,7 @@ export default {
 		flex-direction: column;
 	}
 }
-// 	@include for-tablet-landscape-up {
-// 	}
-// 	@include for-desktop-up {
-// }
+
 .cv-itemSelect {
 	@include for-phone-only {
 		justify-content: center;
