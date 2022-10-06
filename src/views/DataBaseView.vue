@@ -190,7 +190,7 @@ export default {
 				type: "error",
 				duration: 5000,
 				dismissible: true,
-				//position: "left-right", //тут меняем положение окошка с ошибкой на странице по желанию
+				position: "left-right", //тут меняем положение окошка с ошибкой на странице по желанию
 			});
 		},
 	},

@@ -158,13 +158,13 @@ export default {
 		async onDeleteItem(id) {
 			try {
 				await this.$store.dispatch("resumeItems/deleteItem", id);
-				this.isSuccessDelete = true;
-				setTimeout(() => {
-					this.isSuccessDelete = false;
-				}, 1000);
+				this.$toast.success("deleted successfuly");
+				// this.isSuccessDelete = true;
+				// setTimeout(() => {
+				// 	this.isSuccessDelete = false;
+				// }, 1000);
 			} catch (e) {
 				console.log(e);
-				//тут добавить обработку ошибки
 			}
 		},
 	},

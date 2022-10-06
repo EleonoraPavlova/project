@@ -85,27 +85,16 @@ export default {
 				this.articles = response.data.articles;
 				this.totalPages = response.data.total_pages;
 			} catch (e) {
-				this.open();
+				this.$toast.error("Failed to fetch news");
 			}
 		},
-		open() {
-			this.$toast.open({
-				//ToastPlugin код
-				message: "Something went wrong",
-				type: "error",
-				duration: 5000,
-				dismissible: true,
-				position: "top-right", //тут меняем положение окошка с ошибкой на странице по желанию
-			});
-		},
+
 		setPage(page) {
 			// автомат подрузка данных API при клике на кнопки
 			this.startPage = page;
 			this.fetchNews();
 		},
 		markRead(id) {
-			// /*eslint-disable*/
-			// debugger;
 			if (!this.mark.includes(id)) {
 				this.mark.push(id);
 			} else {

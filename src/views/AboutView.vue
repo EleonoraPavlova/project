@@ -9,9 +9,7 @@
 		>
 		{{ activeChapter }}
 		<div class="form-control">
-			<DescriptionVue :class="{ active: activeChapter === index }">{{
-				arrayDescriprtion[activeChapter]
-			}}</DescriptionVue>
+			<DescriptionVue>{{ arrayDescriprtion[activeChapter] }}</DescriptionVue>
 			<div class="d-flex justify-content-between p-4 about-mobile">
 				<StepPagination
 					v-for="(step, index) in arraySteps"
