@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import DescriptionVue from "../components/DescriptionVue.vue";
+import DescriptionVue from "../common/DescriptionVue.vue";
 
 export default {
 	name: "BlogPlan",

@@ -110,10 +110,10 @@
 </template>
 
 <script>
-import DescriptionVue from "../components/DescriptionVue.vue";
-import MyButtons from "./common/MyButtons.vue";
-import MyInput from "../components/MyInput.vue";
-import CloseButton from "../components/CloseButton.vue";
+import DescriptionVue from "../common/DescriptionVue.vue";
+import MyButtons from "../common/MyButtons.vue";
+import MyInput from "../common/MyInput.vue";
+import CloseButton from "../common/CloseButton.vue";
 
 export default {
 	name: "CvtRightBlock",
@@ -153,7 +153,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../assets/mixins.scss";
+@import "../../assets/mixins.scss";
 .cv-right-width {
 	@include for-phone-only {
 		width: 100%;

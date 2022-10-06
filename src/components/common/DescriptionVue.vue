@@ -7,9 +7,6 @@
 <script>
 export default {
 	name: "DescriptionVue",
-	data() {
-		return {};
-	},
 };
 </script>
 

@@ -52,13 +52,13 @@
 </template>
 
 <script>
-import H1Component from "../components/H1Component.vue";
+import H1Component from "../components/common/H1Component.vue";
 import axios from "axios";
-import MyInput from "../components/MyInput.vue";
+import MyInput from "../components/common/MyInput.vue";
 import MyButtons from "../components/common/MyButtons.vue";
-import DataBaseList from "../components/DataBaseList.vue";
-import MistakeMessage from "../components/MistakeMessage.vue";
-import LoaderComponent from "../components/LoaderComponent.vue";
+import DataBaseList from "../components/dataBase/DataBaseList.vue";
+import MistakeMessage from "../components/common/MistakeMessage.vue";
+import LoaderComponent from "../components/common/LoaderComponent.vue";
 
 export default {
 	name: "DataBaseView",

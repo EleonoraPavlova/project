@@ -23,7 +23,7 @@
 <script>
 import axios from "axios";
 import MyButtons from "../components/common/MyButtons.vue";
-import BgGallery from "../components/BgGallery.vue";
+import BgGallery from "../components/gallery/BgGallery.vue";
 
 export default {
 	name: "GalleryView",

@@ -6,9 +6,9 @@
 </template>
 
 <script>
-import DescriptionVue from "./DescriptionVue.vue";
+import DescriptionVue from "../common/DescriptionVue.vue";
 import BlogIcon from "./BlogIcon.vue";
-import MyInput from "./MyInput.vue";
+import MyInput from "../common/MyInput.vue";
 
 export default {
 	name: "CardOne",

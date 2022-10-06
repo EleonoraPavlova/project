@@ -19,11 +19,5 @@ export default {
 			default: "lg",
 		},
 	},
-	data() {
-		return {};
-	},
 };
 </script>
-
-<style lang="scss">
-</style>

@@ -44,8 +44,8 @@
 </template>
 
 <script>
-import DescriptionVue from "./DescriptionVue.vue";
-import MyButtons from "./common/MyButtons.vue";
+import DescriptionVue from "../common/DescriptionVue.vue";
+import MyButtons from "../common/MyButtons.vue";
 
 export default {
 	name: "DataBaseList",
@@ -63,7 +63,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../assets/mixins.scss";
+@import "../../assets/mixins.scss";
 .word-wrap {
 	word-break: break-all;
 	overflow-x: hidden;

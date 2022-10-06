@@ -33,11 +33,11 @@
 </template>
 
 <script>
-import H1Component from "../components/H1Component.vue";
-import CvLeftBlock from "../components/CvLeftBlock.vue";
-import CvtRightBlock from "../components/CvtRightBlock.vue";
+import H1Component from "../components/common/H1Component.vue";
+import CvLeftBlock from "../components/cvconstructor/CvLeftBlock.vue";
+import CvtRightBlock from "../components/cvconstructor/CvtRightBlock.vue";
 import MyButtons from "../components/common/MyButtons.vue";
-import PublishCV from "../components/PublishCV.vue";
+import PublishCV from "../components/cvconstructor/PublishCV.vue";
 import axios from "axios";
 
 export default {

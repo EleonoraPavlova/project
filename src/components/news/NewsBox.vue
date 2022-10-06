@@ -43,8 +43,8 @@
 </template>
 
 <script>
-import DescriptionVue from "../components/DescriptionVue.vue";
-import MyButton from "./common/MyButtons.vue";
+import DescriptionVue from "../common/DescriptionVue.vue";
+import MyButton from "../common/MyButtons.vue";
 
 export default {
 	name: "NewsBox",

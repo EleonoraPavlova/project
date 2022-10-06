@@ -9,7 +9,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../assets/mixins.scss";
+@import "../../assets/mixins.scss";
 .slogan-font {
 	font-family: "Dancing Script";
 	font-weight: bold;

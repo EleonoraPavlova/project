@@ -65,9 +65,9 @@
 </template>
 
 <script>
-import H1Component from "../components/H1Component.vue";
-import DescriptionVue from "../components/DescriptionVue.vue";
-import StepPagination from "../components/StepPagination.vue";
+import H1Component from "../components/common/H1Component.vue";
+import DescriptionVue from "../components/common/DescriptionVue.vue";
+import StepPagination from "../components/about/StepPagination.vue";
 import MyButtons from "../components/common/MyButtons.vue";
 
 export default {

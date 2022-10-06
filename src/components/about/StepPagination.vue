@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import DescriptionVue from "./DescriptionVue";
+import DescriptionVue from "../common/DescriptionVue.vue";
 
 export default {
 	name: "StepPagination",
@@ -59,7 +59,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../assets/mixins.scss";
+@import "../../assets/mixins.scss";
 .rounded-circle {
 	width: 60px;
 	height: 60px;

@@ -36,11 +36,11 @@
 </template>
 
 <script>
-import H1Component from "../components/H1Component.vue";
+import H1Component from "../components/common/H1Component.vue";
 import axios from "axios";
-import NewsBox from "../components/NewsBox.vue";
-import PaginationPages from "../components/PaginationPages.vue";
-import LabelPages from "../components/LabelPages.vue";
+import NewsBox from "../components/news/NewsBox.vue";
+import PaginationPages from "../components/common/PaginationPages.vue";
+import LabelPages from "../components/common/LabelPages.vue";
 
 export default {
 	components: {

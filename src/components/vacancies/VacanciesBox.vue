@@ -92,15 +92,15 @@
 </template>
 
 <script>
-import DescriptionVue from "../components/DescriptionVue.vue";
-import MyButtons from "./common/MyButtons.vue";
-import ModalWindow from "../components/ModalWindow.vue";
-import MyInput from "../components/MyInput.vue";
-import SelectInput from "../components/SelectInput.vue";
+import DescriptionVue from "../common/DescriptionVue.vue";
+import MyButtons from "../common/MyButtons.vue";
+import ModalWindow from "../common/ModalWindow.vue";
+import MyInput from "../common/MyInput.vue";
+import SelectInput from "../common/SelectInput.vue";
 import RadioButtons from "./RadioButtons.vue";
-import CheckBox from "./CheckBox.vue";
-import CloseButton from "./CloseButton.vue";
-import SentModal from "./SentModal.vue";
+import CheckBox from "../common/CheckBox.vue";
+import CloseButton from "../common/CloseButton.vue";
+import SentModal from "../common/SentModal.vue";
 
 export default {
 	name: "VacanciesBox",
@@ -194,7 +194,7 @@ export default {
 		closeSmallModal() {
 			this.isHiddenSmallModal = null;
 		},
-		/*eslint-disable*/
+
 		chooseAllSkills() {
 			this.checked = !this.checked;
 			this.arrSkills.forEach((item) => (item.selected = this.checked));

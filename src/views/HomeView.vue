@@ -47,11 +47,11 @@
 </template>
 
 <script>
-import H1Component from "../components/H1Component.vue";
+import H1Component from "../components/common/H1Component.vue";
 import MyButtons from "../components/common/MyButtons.vue";
-import MyInput from "../components/MyInput.vue";
+import MyInput from "../components/common/MyInput.vue";
 import ArrayNotes from "../components/home/ArrayNotes.vue";
-import TotalCount from "../components/TotalCount.vue";
+import TotalCount from "../components/home/TotalCount.vue";
 
 export default {
 	name: "HomeView",

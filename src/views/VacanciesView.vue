@@ -11,8 +11,8 @@
 </template>
 
 <script>
-import H1Component from "../components/H1Component.vue";
-import VacanciesBox from "../components/VacanciesBox.vue";
+import H1Component from "../components/common/H1Component.vue";
+import VacanciesBox from "../components/vacancies/VacanciesBox.vue";
 
 export default {
 	name: "VacanciesView",

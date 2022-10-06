@@ -39,10 +39,10 @@
 </template>
 
 <script>
-import MyButtons from "./common/MyButtons.vue";
-import TextArea from "./TextArea.vue";
-import SelectInput from "./SelectInput.vue";
-import DescriptionVue from "./DescriptionVue.vue";
+import MyButtons from "../common/MyButtons.vue";
+import TextArea from "../common/TextArea.vue";
+import SelectInput from "../common/SelectInput.vue";
+import DescriptionVue from "../common/DescriptionVue.vue";
 import axios from "axios";
 
 export default {
@@ -101,7 +101,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../assets/mixins.scss";
+@import "../../assets/mixins.scss";
 .width {
 	width: 100%;
 }

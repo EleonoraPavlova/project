@@ -30,9 +30,9 @@
 </template>
 
 <script>
-import CardBlog from "../components/CardBlog.vue";
-import BlogPlan from "../components/BlogPlan.vue";
-import DynamicComponents from "../components/DynamicComponents.vue";
+import CardBlog from "../components/blog/CardBlog.vue";
+import BlogPlan from "../components/blog/BlogPlan.vue";
+import DynamicComponents from "../components/blog/DynamicComponents.vue";
 import { defineAsyncComponent } from "vue";
 
 export default {
@@ -42,7 +42,7 @@ export default {
 		BlogPlan,
 		DynamicComponents,
 		AsyncComponent: defineAsyncComponent(() =>
-			import("../components/AsyncComponent.vue")
+			import("../components/blog/AsyncComponent.vue")
 		),
 	},
 };

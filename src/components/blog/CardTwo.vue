@@ -31,9 +31,9 @@
 </template>
 
 <script>
-import DescriptionVue from "./DescriptionVue.vue";
+import DescriptionVue from "../common/DescriptionVue.vue";
 import BlogIcon from "./BlogIcon.vue";
-import MyButtons from "./common/MyButtons.vue";
+import MyButtons from "../common/MyButtons.vue";
 
 export default {
 	name: "CardTwo",

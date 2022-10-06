@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import CloseButton from "../components/CloseButton.vue";
+import CloseButton from "./CloseButton.vue";
 
 export default {
 	name: "MistakeMessage",
@@ -36,7 +36,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../assets/mixins.scss";
+@import "../../assets/mixins.scss";
 .mistake-width {
 	width: 40%;
 	@include for-phone-only {

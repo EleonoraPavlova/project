@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import MyButtons from "./common/MyButtons.vue";
+import MyButtons from "./MyButtons.vue";
 
 export default {
 	name: "SentModal",

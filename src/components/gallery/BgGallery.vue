@@ -11,7 +11,7 @@
 
 <script>
 import SloganGallery from "./SloganGallery.vue";
-import H1Component from "./H1Component.vue";
+import H1Component from "../common/H1Component.vue";
 
 export default {
 	name: "BgGallery",
@@ -29,7 +29,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../assets/mixins.scss";
+@import "../../assets/mixins.scss";
 .galleryH1 {
 	font-weight: 900;
 	margin: 1%;
