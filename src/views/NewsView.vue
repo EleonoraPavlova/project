@@ -1,7 +1,6 @@
 <template>
 	<div class="container">
 		<H1Component>Actual news</H1Component>
-
 		<NewsBox
 			v-for="item in articles"
 			:key="item"

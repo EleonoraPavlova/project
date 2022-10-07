@@ -1,7 +1,10 @@
-export default {               //выбираемый объект находится в фокусе
-    name: 'focus',
-    mounted(el) {
-        el.focus()
-    },
+const focus = {
+    mounted: (el) => el.focus()
+}
 
+export default {
+    directives: {
+        // enables v-focus in template
+        focus
+    }
 }

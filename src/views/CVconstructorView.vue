@@ -7,7 +7,7 @@
 				<CvLeftBlock @added-info="addInfo" />
 			</div>
 			<div class="form-control m-2 p-4 cvbox__right">
-				<CvtRightBlock @saved="saveItem" />
+				<CvtRightBlock />
 			</div>
 		</div>
 		<div class="d-flex justify-content-md-end cv-button">
@@ -56,8 +56,7 @@ export default {
 		try {
 			await this.$store.dispatch("resumeItems/getList");
 		} catch (e) {
-			this.allInfo = [];
-			return;
+			this.$toast.info("There is nothing here yet");
 		}
 	},
 	methods: {
@@ -79,12 +78,12 @@ export default {
 		// 		console.log(e);
 		// 	}
 		// },
-		saveItem(payload) {
-			//более краткая запись: this.allInfo[payload.index].value = payload.value;
-			const item = this.allInfo[payload.index];
-			item.value = payload.value;
-			this.allInfo[1];
-		},
+		// saveItem(payload) {
+		// 	//более краткая запись: this.allInfo[payload.index].value = payload.value;
+		// 	const item = this.allInfo[payload.index];
+		// 	item.value = payload.value;
+		// 	this.allInfo[1];
+		// },
 		// async downloadResume() {
 		// 	try {
 		// 		const { data } = await axios.get(

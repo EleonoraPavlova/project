@@ -138,9 +138,9 @@ export default {
 				// 	return;
 				// }
 				//или показать ошибку вот так:
-				if (!data) {
-					throw new Error("The list of people is empty");
-				}
+				// if (!data) {
+				// 	throw new Error("The list of people is empty");
+				// }
 				//нужно объект трансформировать в массив
 				this.people = Object.keys(data).map((key) => {
 					return {
@@ -151,11 +151,7 @@ export default {
 				this.loading = false;
 			} catch (e) {
 				if (!this.initialLoad) {
-					this.alert = {
-						class: "border border-danger",
-						title: "Mistake!",
-						text: e.message,
-					};
+					this.$toast.error("The list of people is empty");
 				}
 			}
 			this.loading = false;
@@ -180,18 +176,8 @@ export default {
 					this.alert = null;
 				}, 1000);
 			} catch (e) {
-				this.open();
+				this.$toast.error("The list of people is empty");
 			}
-		},
-		open() {
-			this.$toast.open({
-				//ToastPlugin код
-				message: "The list of people is empty",
-				type: "error",
-				duration: 5000,
-				dismissible: true,
-				position: "left-right", //тут меняем положение окошка с ошибкой на странице по желанию
-			});
 		},
 	},
 };

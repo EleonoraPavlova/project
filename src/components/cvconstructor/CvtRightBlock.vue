@@ -6,7 +6,7 @@
 			}"
 			>My resume</DescriptionVue
 		>
-		<div v-for="(info, index) in allInfo" :key="info.key">
+		<div v-for="info in allInfo" :key="info.key">
 			<!-- привязала значение ключа к конкретному значению select -->
 			<div
 				class="
@@ -19,7 +19,7 @@
 					cv-boxItem
 				"
 			>
-				<template v-if="editingItemIndex !== index">
+				<template v-if="editingItemId !== info.id">
 					<div
 						v-if="info.key === 'Full name'"
 						class="
@@ -82,18 +82,18 @@
 					"
 				>
 					<MyButtons
-						v-if="editingItemIndex !== index"
+						v-if="editingItemId !== info.id"
 						color="light"
 						class="btn-outline-success"
 						size="sm"
 						@click="
-							editingItemIndex = index;
+							editingItemId = info.id;
 							editingValue = info.value;
 						"
 						>Edit</MyButtons
 					>
 					<MyButtons
-						v-else-if="editingItemIndex === index"
+						v-else-if="editingItemId === info.id"
 						color="light"
 						class="btn-outline-warning"
 						size="sm"
@@ -106,12 +106,9 @@
 				</div>
 			</div>
 		</div>
-		<div v-if="isSuccessDelete" class="alert alert-success">
-			The item was successfully removed
-		</div>
-		<div v-if="allInfo.length === 0" class="alert alert-danger">
+		<!-- <div v-if="allInfo.length === 0" class="alert alert-danger">
 			There is nothing here yet
-		</div>
+		</div> -->
 	</div>
 </template>
 
@@ -135,10 +132,9 @@ export default {
 	data() {
 		return {
 			//обозначить порядковый номер редак элемента
-			editingItemIndex: null,
+			editingItemId: null,
 			//отредактированное значение уже!
 			editingValue: null,
-			isSuccessDelete: false,
 		};
 	},
 	computed: {
@@ -147,24 +143,33 @@ export default {
 		}),
 	},
 	methods: {
-		onSaveItem() {
-			this.$emit("saved", {
-				index: this.editingItemIndex,
-				value: this.editingValue,
-			});
-			this.editingItemIndex = null;
-			this.editingValue = null;
+		async onSaveItem() {
+			try {
+				// const item = this.allInfo[this.editingItemIndex];
+				await this.$store.dispatch("resumeItems/editItem", {
+					id: this.editingItemId,
+					value: this.editingValue,
+				});
+				this.editingItemId = null;
+				this.editingValue = null;
+				this.$toast.success("Edited successfuly");
+			} catch (e) {
+				this.$toast.warning("Something went wrong");
+			}
+			//без store
+			// 	this.$emit("saved", {
+			// 		index: this.editingItemIndex,
+			// 		value: this.editingValue,
+			// 	});
+			// 	this.editingItemIndex = null;
+			// 	this.editingValue = null;
 		},
 		async onDeleteItem(id) {
 			try {
 				await this.$store.dispatch("resumeItems/deleteItem", id);
-				this.$toast.success("deleted successfuly");
-				// this.isSuccessDelete = true;
-				// setTimeout(() => {
-				// 	this.isSuccessDelete = false;
-				// }, 1000);
+				this.$toast.success("Deleted successfuly");
 			} catch (e) {
-				console.log(e);
+				this.$toast.warning("Something went wrong");
 			}
 		},
 	},

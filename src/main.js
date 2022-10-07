@@ -8,14 +8,13 @@ import "./assets/normalize.css";
 import "./assets/mixins.scss";
 import ToastPlugin from "vue-toast-notification";
 import "vue-toast-notification/dist/theme-sugar.css";
+import directives from './directives';
 
 
-const app = createApp(App);
-app.directive("focus", {
-    mounted(el) {
-        el.focus();
-    },
-});
+const app = createApp(App)
+directives.forEach(directive => {
+    app.directive(directive.name, directive)
+})
 
 
 
