@@ -106,9 +106,6 @@
 				</div>
 			</div>
 		</div>
-		<!-- <div v-if="allInfo.length === 0" class="alert alert-danger">
-			There is nothing here yet
-		</div> -->
 	</div>
 </template>
 

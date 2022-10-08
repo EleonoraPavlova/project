@@ -34,13 +34,21 @@
 					>
 				</div>
 			</div>
-			<div
-				v-if="loading"
-				class="d-flex justify-content-center align-items-center"
-			>
-				<LoaderComponent />
+			<div class="d-flex justify-content-center align-items-center">
+				<LoaderComponent v-if="loading">
+					<div class="l-1 letter">L</div>
+					<div class="l-2 letter">o</div>
+					<div class="l-3 letter">a</div>
+					<div class="l-4 letter">d</div>
+					<div class="l-5 letter">i</div>
+					<div class="l-6 letter">n</div>
+					<div class="l-7 letter">g</div>
+					<div class="l-8 letter">.</div>
+					<div class="l-9 letter">.</div>
+					<div class="l-10 letter">.</div>
+				</LoaderComponent>
 			</div>
-			<div v-else class="m-4">
+			<div class="m-4">
 				<DataBaseList
 					:people="people"
 					@download="downloadPerson()"

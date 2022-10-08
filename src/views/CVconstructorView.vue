@@ -10,16 +10,7 @@
 				<CvtRightBlock />
 			</div>
 		</div>
-		<div class="d-flex justify-content-md-end cv-button">
-			<MyButtons
-				type="submit"
-				class="btn-outline-success"
-				color="light"
-				size="lg"
-				>Download comments</MyButtons
-			>
-		</div>
-		<PublishCV />
+		<CommentsCV />
 	</div>
 </template>
 
@@ -28,18 +19,17 @@ import { mapState } from "vuex";
 import H1Component from "../components/common/H1Component.vue";
 import CvLeftBlock from "../components/cvconstructor/CvLeftBlock.vue";
 import CvtRightBlock from "../components/cvconstructor/CvtRightBlock.vue";
-import MyButtons from "../components/common/MyButtons.vue";
-import PublishCV from "../components/cvconstructor/PublishCV.vue";
+import CommentsCV from "../components/cvconstructor/CommentsCV.vue";
 
 export default {
 	name: "CVconstructorView",
 	components: {
 		H1Component,
 		CvLeftBlock,
-		MyButtons,
 		CvtRightBlock,
-		PublishCV,
+		CommentsCV,
 	},
+
 	data() {
 		return {
 			allInfo: [],
@@ -63,6 +53,7 @@ export default {
 		addInfo(payload) {
 			this.allInfo.push(payload);
 		},
+
 		// async deleteItemResume(key) {
 		// 	const [deleted] = this.allInfo.splice(key, 1);
 		// 	try {
@@ -164,16 +155,7 @@ export default {
 		margin-left: 0px !important;
 	}
 }
-.cv-button {
-	@include for-phone-only {
-		justify-content: center;
-		align-items: center;
-	}
-	@include for-tablet-portrait-up {
-		justify-content: center;
-		align-items: center;
-	}
-}
+
 .p-3 {
 	@include for-phone-only {
 		padding: 5px;
