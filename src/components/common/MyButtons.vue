@@ -10,7 +10,7 @@
 
 <script>
 export default {
-	name: "MuButtons",
+	name: "MyButtons",
 	props: {
 		color: {
 			type: String,
