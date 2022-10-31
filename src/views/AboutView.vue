@@ -128,11 +128,5 @@ export default {
 	@include for-tablet-portrait-up {
 		flex-direction: column;
 	}
-	// @include for-tablet-landscape-up {
-	// 	width: 50%;
-	// }
-	// @include for-desktop-up {
-	// 	width: 45%;
-	// }
 }
 </style>

@@ -178,13 +178,7 @@ export default {
 				}, 3000);
 			}
 		},
-		// validationInputNum() {
-		// 	if (this.inputValue == !isNaN) {
-		// 		this.isValidation = false;
-		// 		this.isValidationOnNumbers = true;
-		// 		this.inputValue = "";
-		// 	}
-		// },
+
 		showModal() {
 			this.isVisibleModal = true;
 		},
@@ -201,7 +195,7 @@ export default {
 		},
 		showSentlModal() {
 			this.validationInput();
-			// this.validationInputNum();
+
 			if (!this.isValidation) {
 				this.isVisibleModal = false;
 				this.isHiddenSmallModal = true;

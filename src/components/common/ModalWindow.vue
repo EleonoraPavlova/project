@@ -21,7 +21,6 @@
 <script>
 export default {
 	name: "ModalWindow",
-
 	props: {
 		show: {
 			type: Boolean,

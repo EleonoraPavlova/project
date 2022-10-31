@@ -47,9 +47,7 @@ export default {
 		},
 	},
 	emits: ["click"],
-	data() {
-		return {};
-	},
+
 	methods: {
 		pageClick() {
 			this.$emit("click");
